@@ -19,7 +19,7 @@
         <src.dir>src/main/java</src.dir>
         <!-- dependency -->
         <assertj.version>3.23.1</assertj.version>
-        <junit.version>5.9.1</junit.version>
+        <junit.version>5.9.2</junit.version>
         <kafka.version>3.1.1</kafka.version>
         <lombok.version>1.18.24</lombok.version>
         <slf4j.version>1.7.36</slf4j.version>
