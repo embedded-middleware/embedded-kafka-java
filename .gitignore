@@ -3,6 +3,7 @@
 
 # ide
 .idea/**
+**.iml
 
 # Project exclude paths
 **.log

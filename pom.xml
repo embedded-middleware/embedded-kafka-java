@@ -6,7 +6,7 @@
 
     <groupId>io.github.embedded-middleware</groupId>
     <artifactId>embedded-kafka-parent</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <modules>
         <module>embedded-kafka-core</module>
     </modules>
@@ -19,15 +19,17 @@
         <src.dir>src/main/java</src.dir>
         <!-- dependency -->
         <assertj.version>3.23.1</assertj.version>
-        <junit.version>5.9.1</junit.version>
+        <junit.version>5.9.2</junit.version>
         <kafka.version>3.1.1</kafka.version>
+        <log4j.version>2.19.0</log4j.version>
         <lombok.version>1.18.24</lombok.version>
-        <slf4j.version>1.7.36</slf4j.version>
+        <slf4j.version>2.0.0</slf4j.version>
         <!-- plugin -->
         <compiler-plugin.version>3.10.1</compiler-plugin.version>
         <checkstyle-plugin.version>3.2.0</checkstyle-plugin.version>
         <puppycrawl.version>10.3.3</puppycrawl.version>
         <spotbugs-maven-plugin.version>4.7.2.0</spotbugs-maven-plugin.version>
+        <surefire-plugin.version>3.0.0-M8</surefire-plugin.version>
     </properties>
 
     <dependencies>
@@ -86,6 +88,11 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

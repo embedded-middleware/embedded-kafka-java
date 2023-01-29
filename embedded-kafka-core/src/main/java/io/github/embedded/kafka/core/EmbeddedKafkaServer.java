@@ -26,14 +26,34 @@ public class EmbeddedKafkaServer {
 
     private KafkaRaftServer kafkaRaftServer;
 
+    public EmbeddedKafkaServer() {
+        this(new EmbeddedKafkaConfig());
+    }
+
+    public EmbeddedKafkaServer(EmbeddedKafkaConfig embeddedKafkaConfig) {
+        try {
+            if (embeddedKafkaConfig.getKafkaPort() == 0) {
+                this.kafkaPort = SocketUtil.getFreePort();
+            } else {
+                this.kafkaPort = embeddedKafkaConfig.getKafkaPort();
+            }
+            if (embeddedKafkaConfig.getControllerPort() == 0) {
+                this.controllerPort = SocketUtil.getFreePort();
+            } else {
+                this.controllerPort = embeddedKafkaConfig.getControllerPort();
+            }
+        } catch (Exception e) {
+            log.error("exception is ", e);
+            throw new IllegalStateException("start kafka broker failed");
+        }
+    }
+
     public void start() throws Exception {
         Properties properties = new Properties();
         File temporaryFolder = Files.newTemporaryFolder();
         temporaryFolder.deleteOnExit();
         properties.setProperty("log.dirs", temporaryFolder.getCanonicalPath());
         properties.setProperty("process.roles", "broker,controller");
-        this.kafkaPort = SocketUtil.getFreePort();
-        this.controllerPort = SocketUtil.getFreePort();
         properties.setProperty("node.id", "0");
         properties.setProperty("broker.id", "0");
         properties.setProperty("auto.create.topics.enable", "true");
